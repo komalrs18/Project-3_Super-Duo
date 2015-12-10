@@ -7,13 +7,13 @@ import android.content.Context;
  */
 public class Utilies
 {
-    public static final int SERIE_A = 357;
-    public static final int PREMIER_LEGAUE = 354;
+    public static final int SERIE_A = 401;
+    public static final int PREMIER_LEGAUE = 398;
     public static final int CHAMPIONS_LEAGUE = 362;
-    public static final int PRIMERA_DIVISION = 358;
-    public static final int BUNDESLIGA = 351;
-
-    public static String getLeague(Context context, int league_num)
+    public static final int PRIMERA_DIVISION = 399;
+    public static final int BUNDESLIGA = 394;
+    public static final int LEAGUE_1 = 396;
+    public static String getLeague(int league_num,Context context)
     {
         switch (league_num)
         {
@@ -22,17 +22,17 @@ public class Utilies
             case CHAMPIONS_LEAGUE : return context.getString(R.string.champions_league);
             case PRIMERA_DIVISION : return context.getString(R.string.primeradivison);
             case BUNDESLIGA : return context.getString(R.string.bundesliga);
-            default: return context.getString(R.string.not_known_league);
+            case LEAGUE_1 : return context.getString(R.string.league1);
+            default: return context.getString(R.string.no_known_league);
         }
     }
-    public static String getMatchDay(Context context, int match_day,int league_num)
+    public static String getMatchDay(int match_day,int league_num,Context context)
     {
         if(league_num == CHAMPIONS_LEAGUE)
         {
             if (match_day <= 6)
             {
-                return context.getString(R.string.group_stage_text) +
-                        context.getString(R.string.matchday_text) + " 6";
+                return context.getString(R.string.group_stage_text);
             }
             else if(match_day == 7 || match_day == 8)
             {
@@ -53,7 +53,7 @@ public class Utilies
         }
         else
         {
-            return context.getString(R.string.not_known_league) + String.valueOf(match_day);
+            return context.getString(R.string.matchday_text)+" : " + String.valueOf(match_day);
         }
     }
 
@@ -73,6 +73,7 @@ public class Utilies
     {
         if (teamname==null){return R.drawable.no_icon;}
         switch (teamname)
+            //The string here can't be put into resources because of switch clause
         {
             case "Arsenal London FC" : return R.drawable.arsenal;
             case "Manchester United FC" : return R.drawable.manchester_united;
